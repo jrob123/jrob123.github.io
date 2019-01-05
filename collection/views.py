@@ -6,6 +6,7 @@ from django.views import generic
 
 from .models import Question, Choice
 
+#test
 class IndexView(generic.ListView):
 	template_name = 'collection/index.html'
 	#template = loader.get_template('collection/index.html')
