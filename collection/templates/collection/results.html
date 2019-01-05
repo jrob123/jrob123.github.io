@@ -1,0 +1,13 @@
+<h1>{{ question.question_text }}</h1>
+
+<ul>
+{% for choice in question.choice_set.all %}
+    {% if choice.votes %}
+    	<li><b>Song:</b> {{ choice.choice_text }} <b>ranking:</b> {{ choice.rank }}</li>
+    {% endif %}
+{% endfor %}
+</ul>
+<hr>
+<i>Note:</i> Keep Choosing until you have <b>3</b> songs in your cart<br>
+<a href="{% url 'collection:detail' question.id %}">Choose another</a>
+

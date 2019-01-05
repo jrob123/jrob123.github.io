@@ -1,0 +1,28 @@
+
+<h1>Follow the links below to pick your songs!</h1>
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'collection:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+
+
+
+
+<center><h1>Scoreboard</h1></center><hr>
+{% for question in latest_question_list %}
+			<center><h3><u><font color="maroon">{{question.question_text}}</font></u></h3>
+			</center>
+	{% for choice in question.choice_set.all %}
+		{% if choice.votes %}
+    	<center><li>Song: <b> {{ choice.choice_text }} </b>,  ranking: <b>{{ choice.rank }}</b></li></center>
+    	{% endif %}
+	{% endfor %}
+
+{% endfor %}
+<hr>

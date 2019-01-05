@@ -1,0 +1,14 @@
+<h1>{{ question.question_text }}</h1>
+<p><font color="red"><i>Instructions: </i> Choose one song at a time. You will need to keep returning to this page until 3 songs have been chosen!</font></p>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'collection:vote' question.id %}" method="post">
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+{% endfor %}
+<br>
+<input type="submit" value="Choose Song" />
+</form>
